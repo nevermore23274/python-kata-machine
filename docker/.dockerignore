@@ -1,0 +1,44 @@
+# Docker build exclusions for kata-machine
+# These files/folders aren't needed inside the container build context
+
+# Git and version control
+.git
+.gitignore
+
+# Practice files (generated locally)
+day*/
+src/
+
+# Python caches
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.mypy_cache
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# System files  
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Progress tracking (local only)
+.kata_progress.json
+
+# Documentation (not needed for build)
+README.md
+
+# Other docker files
+Dockerfile
+.dockerignore

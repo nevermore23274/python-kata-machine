@@ -1,14 +1,17 @@
 services:
   python-kata:
-    build: .
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
     container_name: python-kata-machine
     volumes:
       - .:/kata-machine
+      - kata-machine-cache:/home/kata-user/.cache
     working_dir: /kata-machine
     stdin_open: true
     tty: true
     environment:
       - PYTHONPATH=/kata-machine
-      - TERM=xterm-256color
-    # Start directly into bash for immediate coding
-    command: /bin/bash
+    
+volumes:
+  kata-machine-cache:

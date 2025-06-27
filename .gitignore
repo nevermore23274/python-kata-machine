@@ -1,9 +1,12 @@
-# Python Kata-Machine .gitignore
-
 # === GENERATED PRACTICE FOLDERS ===
 # Don't commit daily practice folders - these are generated locally
 src/
+day*/
 daily-practice/
+
+# === PROGRESS TRACKING ===
+# Don't commit personal progress
+.kata_progress.json
 
 # === PYTHON CACHES ===
 # Byte-compiled / optimized / DLL files
@@ -108,8 +111,9 @@ $RECYCLE.BIN/
 *~
 
 # === DOCKER ===
-# Don't ignore docker files, but ignore runtime data
-.docker/
+# Keep docker folder, but ignore old files if they exist
+Dockerfile
+requirements.txt
 
 # === OUTPUT & LOGS ===
 # Test output files

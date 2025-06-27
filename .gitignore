@@ -1,0 +1,151 @@
+# Python Kata-Machine .gitignore
+
+# === GENERATED PRACTICE FOLDERS ===
+# Don't commit daily practice folders - these are generated locally
+src/
+daily-practice/
+
+# === PYTHON CACHES ===
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# === TESTING CACHES ===
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# === DEVELOPMENT CACHES ===
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# === IDE & EDITOR FILES ===
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# === SYSTEM FILES ===
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# === DOCKER ===
+# Don't ignore docker files, but ignore runtime data
+.docker/
+
+# === OUTPUT & LOGS ===
+# Test output files
+output.txt
+test-output.txt
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# === PROJECT SPECIFIC ===
+# User's custom configurations (if they customize kata.config.py extensively)
+# kata.config.local.py  # Uncomment if you add local config support
+
+# Algorithm implementation backups
+*.backup
+*.bak
+
+# Performance test results
+benchmarks/
+performance-results/
+
+# === KEEP THESE FILES ===
+# Core system files (explicitly keep in case of global ignores)
+!kata.config.py
+!config_loader.py
+!check_config.py
+!kata.py
+!test_runner.py
+!pytest.ini
+!scripts/
+!tests/
+!Dockerfile
+!docker-compose.yml
+!README.md
+!.gitignore

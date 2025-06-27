@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  python-kata:
+    build: .
+    container_name: python-kata-machine
+    volumes:
+      - .:/kata-machine
+    working_dir: /kata-machine
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONPATH=/kata-machine
+      - TERM=xterm-256color
+    # Start directly into bash for immediate coding
+    command: /bin/bash

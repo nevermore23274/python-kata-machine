@@ -17,8 +17,6 @@ This project recreates the daily practice workflow from ThePrimeagen's "The Last
 mkdir python-kata-machine
 cd python-kata-machine
 
-# Save Dockerfile and docker-compose.yml to this directory
-
 # Start coding immediately
 docker-compose run --rm python-kata
 ```

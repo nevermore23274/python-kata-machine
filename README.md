@@ -1,10 +1,10 @@
 # Python Kata-Machine
 
-A Python port of ThePrimeagen's [kata-machine](https://github.com/ThePrimeagen/kata-machine) for practicing algorithms and data structures without TypeScript.
+A Python port of ThePrimeagen's [kata-machine](https://github.com/ThePrimeagen/kata-machine) for **daily algorithm practice** without TypeScript.
 
 ## What This Is
 
-This project recreates the exact same workflow and algorithms from ThePrimeagen's "The Last Algorithms Course You'll Need" but using Python instead of TypeScript. Perfect for developers who want to follow the course but prefer Python over TypeScript.
+This project recreates the daily practice workflow from ThePrimeagen's "The Last Algorithms Course You'll Need" but using Python instead of TypeScript. **One algorithm per day**, following the course progression, building algorithmic thinking through spaced repetition.
 
 ## Quick Start
 
@@ -16,67 +16,64 @@ This project recreates the exact same workflow and algorithms from ThePrimeagen'
 # Clone or create project directory
 mkdir python-kata-machine
 cd python-kata-machine
-git clone https://github.com/nevermore23274/python-kata-machine.git
+
+# Save Dockerfile and docker-compose.yml to this directory
 
 # Start coding immediately
 docker-compose run --rm python-kata
 ```
 
 ### Inside the Container
-The complete Python kata-machine system with all commands working:
+Simple daily practice commands - one algorithm per day:
 
-**Main Commands:**
+**Daily Workflow:**
 ```bash
-python kata.py config             # ✅ Validate configuration
-python kata.py generate           # ✅ Create daily practice (equivalent to 'yarn generate')
-python kata.py test               # ✅ Run tests (equivalent to 'yarn test')
-python kata.py clear --all        # ✅ Clear generated folders (equivalent to 'yarn clear')
-python kata.py setup-tests        # ✅ Generate test templates for all algorithms
+python kata.py daily              # ✅ Get today's algorithm
+python kata.py test               # ✅ Test your implementation  
+python kata.py complete           # ✅ Mark done, advance to tomorrow
 ```
 
-**Quick Commands:**
+**Progress & Utility:**
 ```bash
-python kata.py test --day 1              # Test specific day
-python kata.py test --algorithm QuickSort # Test specific algorithm
-python kata.py clear --day 2             # Clear specific day
+python kata.py progress           # ✅ See your progress through course
+python kata.py config             # ✅ Check configuration
+python kata.py clear              # ✅ Clean up practice files
+python kata.py reset              # ✅ Start course over
 ```
 
-## How It Works (Complete System!)
+## How It Works (Daily Practice System!)
 
-1. **Configure Algorithms:** Edit `kata.config.py` to choose which algorithms to practice ✅
-2. **Generate Daily Practice:** Run `python kata.py generate` to create `src/day1/`, `src/day2/`, etc. ✅
-3. **Implement Algorithms:** Fill in the function stubs with your implementations ✅
-4. **Test Your Code:** Run `python kata.py test` to verify correctness ✅
-5. **Repeat Daily:** Build muscle memory through spaced repetition ✅
+1. **Get Today's Algorithm:** Run `python kata.py daily` to get one algorithm ✅
+2. **Implement Algorithm:** Edit the generated file following ThePrimeagen's lesson ✅  
+3. **Test Your Code:** Run `python kata.py test` to verify correctness ✅
+4. **Mark Complete:** Run `python kata.py complete` to advance to tomorrow ✅
+5. **Repeat Daily:** Build algorithmic thinking through spaced repetition ✅
 
-## Complete Workflow Example
+## Complete Daily Workflow
 
 ```bash
-# 1. Start the container and check configuration
+# 1. Start the container
 docker-compose run --rm python-kata
-python kata.py config
 
-# 2. Generate your first day of practice
-python kata.py generate
+# 2. Get today's algorithm
+python kata.py daily
+# Output: "📅 Day 1 Practice - 🎯 Today's Algorithm: LinearSearch"
 
-# 3. Navigate to the generated folder and start coding
-cd src/day1
-ls  # See all 25 algorithm files ready for implementation
+# 3. Implement the algorithm  
+cd day1
+# Edit linear_search.py - follow ThePrimeagen's lesson
 
-# 4. Implement an algorithm (example: linear_search.py)
-# Edit the file and replace the NotImplementedError with your code
-
-# 5. Test your implementation
-python kata.py test --algorithm LinearSearch
-
-# 6. Test everything
+# 4. Test your implementation
 python kata.py test
+# See if your algorithm passes the tests!
 
-# 7. Generate next day when ready for more practice
-python kata.py generate
+# 5. Mark complete and get tomorrow's algorithm
+python kata.py complete
+# Advances to Day 2 with next algorithm
 
-# 8. Clear and start fresh when needed
-python kata.py clear --all
+# 6. Check your progress anytime
+python kata.py progress
+# See: "Completed: 1/25 algorithms (4.0%)"
 ```
 
 ## What You Get When You Test
@@ -84,10 +81,10 @@ python kata.py clear --all
 ```bash
 python kata.py test
 # Shows:
-# ✅ Tests PASS for implemented algorithms  
-# ❌ Tests FAIL for incorrect implementations
-# ⏭️  Tests SKIP for unimplemented algorithms (placeholder tests)
-# 📊 Full test report with detailed feedback
+# ✅ Tests PASS if your algorithm is correct
+# ❌ Tests FAIL with helpful error messages if incorrect  
+# ⚠️  Message if no tests exist yet for this algorithm
+# 📊 Clear feedback on your implementation
 ```
 
 ## Development Environment
@@ -100,60 +97,83 @@ The container includes:
 - **rich** - Beautiful console output
 - **pyyaml** - Configuration file support
 
-## Project Structure (Current)
+## Project Structure (Daily Practice)
 
 ```
 python-kata-machine/
-├── kata.config.py              # Algorithm selection ✅
-├── config_loader.py           # Configuration system ✅
+├── kata.config.py              # Course progression & config ✅
+├── config_loader.py           # Configuration system ✅  
 ├── check_config.py            # Config validation ✅
-├── kata.py                    # Main command interface ✅
-├── test_runner.py             # Test runner system ✅
+├── kata.py                    # Main daily practice interface ✅
+├── test_runner.py             # Test runner for daily practice ✅
 ├── pytest.ini                # Pytest configuration ✅
 ├── scripts/
-│   ├── generate.py            # Generate daily practice folders ✅
-│   ├── clear.py              # Clear generated folders ✅
-│   └── generate_tests.py     # Generate test templates ✅
-├── tests/                    # Complete test suite ✅
-│   ├── conftest.py           # Pytest fixtures and config ✅
-│   ├── test_linear_search.py # Example: Complete test cases ✅
-│   ├── test_bubble_sort.py   # Example: Complete test cases ✅
-│   └── ... (25 test files)   # All algorithms covered ✅
-├── src/                      # Generated daily practice folders
-│   ├── day1/                 # 25 algorithm stubs ready for coding ✅
-│   │   ├── __init__.py       # Python package setup ✅
-│   │   ├── linear_search.py  # Ready for implementation ✅
-│   │   ├── bubble_sort.py    # Ready for implementation ✅
-│   │   ├── quick_sort.py     # Ready for implementation ✅
-│   │   └── ... (22 more)     # All 25 algorithms ✅
-│   ├── day2/                 # Generated on next run
-│   └── ...
-└── Dockerfile, docker-compose.yml # Container setup ✅
+│   ├── daily.py              # Daily practice generator ✅
+│   └── clear.py              # Clean up utility ✅
+├── tests/                    # Essential test examples ✅
+│   ├── conftest.py           # Pytest fixtures ✅
+│   ├── test_linear_search.py # Complete test example ✅
+│   ├── test_bubble_sort.py   # Complete test example ✅
+│   └── test_queue.py         # Data structure test example ✅
+├── day1/                     # Generated daily practice ✅
+│   ├── __init__.py           # Python package setup ✅
+│   └── linear_search.py      # Today's algorithm to implement ✅
+├── day2/                     # Tomorrow's practice (after complete)
+├── day3/                     # Next day...
+└── .kata_progress.json       # Your progress (auto-generated) ✅
 ```
+
+## Course Progression (25 Algorithms)
+
+**Week 1-2: Foundations**
+- LinearSearch, BinarySearchList, TwoCrystalBalls
+- BubbleSort, InsertionSort
+
+**Week 3-4: Data Structures**  
+- Queue, Stack, ArrayList
+- SinglyLinkedList, DoublyLinkedList
+
+**Week 5-6: Advanced Sorting & Trees**
+- MergeSort, QuickSort
+- BTPreOrder, BTInOrder, BTPostOrder, BTBFS
+
+**Week 7-8: Tree & Graph Operations**
+- CompareBinaryTrees, DFSOnBST
+- BFSGraphMatrix, DFSGraphList
+
+**Week 9-10: Advanced Algorithms**
+- Dijkstra, PrimsList
+- Trie, LRU, Map
 
 ## Why Python Kata-Machine?
 
-- **✅ Complete TypeScript Replacement:** Exact same workflow as the original kata-machine
-- **🐍 Simpler Syntax:** Focus on algorithms, not language complexity  
-- **📚 Better for Learning:** More readable implementations
-- **🚀 No Build Step:** Direct execution without compilation
-- **🧪 Excellent Testing:** Comprehensive pytest-based test suite
-- **🎯 Type Hints:** Optional typing for those who want it
-- **📦 Containerized:** Consistent environment across all systems
-- **🔄 Daily Practice:** Same spaced repetition system as original
+- **📅 Daily Practice Focus:** One algorithm per day, not overwhelming batches
+- **🎯 Course Progression:** Follows ThePrimeagen's lesson order exactly  
+- **🐍 Python Simplicity:** Focus on algorithms, not language complexity
+- **📚 Better Learning:** More readable than TypeScript for beginners
+- **🧪 Smart Testing:** Tests only what you're working on today
+- **📊 Progress Tracking:** See your journey through all 25 algorithms
+- **🚀 No Setup Friction:** One command gets you coding
+- **🔄 Spaced Repetition:** Build long-term algorithmic thinking
 
 ## Ready to Start!
 
-This is a **complete, working system** - equivalent to the original TypeScript kata-machine but in Python. You can now follow ThePrimeagen's "The Last Algorithms Course You'll Need" using Python instead of TypeScript!
+This is a **complete daily practice system** - the TypeScript kata-machine workflow, perfected for Python learners.
+
+**Perfect for:**
+- Following ThePrimeagen's course with Python
+- Building consistent daily coding habits  
+- Learning algorithms without language complexity
+- Preparing for technical interviews
+- Developing algorithmic thinking
 
 **Next Steps:**
-1. Set up the container (5 minutes)
-2. Run `python kata.py generate` to create your first practice day
-3. Start implementing algorithms as you follow the course
-4. Use `python kata.py test` to validate your implementations
-5. Build algorithmic thinking through daily practice
+1. **5 minutes:** Set up the container  
+2. **Daily:** `python kata.py daily` → code → `python kata.py test` → `python kata.py complete`
+3. **10 weeks:** Complete all 25 algorithms from the course
+4. **Forever:** Solid algorithmic foundation 🎉
 
-Happy coding! 🎉
+Happy coding! 🚀
 
 ---
 

@@ -24,26 +24,25 @@ class KataTestRunner:
     
     def find_latest_day(self) -> Optional[int]:
         """Find the latest day directory"""
-        if not self.src_dir.exists():
-            return None
-            
-        existing_days = []
-        for item in self.src_dir.iterdir():
+        # Look for day directories in current directory (not src/)
+        day_dirs = []
+        for item in self.base_dir.iterdir():
             if item.is_dir() and item.name.startswith("day"):
                 try:
                     day_num = int(item.name[3:])
-                    existing_days.append(day_num)
+                    day_dirs.append(day_num)
                 except ValueError:
                     continue
         
-        return max(existing_days) if existing_days else None
+        return max(day_dirs) if day_dirs else None
     
     def run_tests_for_day(self, day_num: int, verbose: bool = True) -> int:
         """Run tests for a specific day"""
-        day_dir = self.src_dir / f"day{day_num}"
+        day_dir = self.base_dir / f"day{day_num}"
         
         if not day_dir.exists():
             print(f"❌ Day {day_num} not found at {day_dir}")
+            print("   Run 'python kata.py daily' to generate today's practice")
             return 1
         
         # Add the day directory to Python path for imports
@@ -51,16 +50,34 @@ class KataTestRunner:
         if day_dir_str not in sys.path:
             sys.path.insert(0, day_dir_str)
         
-        print(f"🧪 Testing Day {day_num} Algorithms")
+        print(f"🧪 Testing Day {day_num} Algorithm")
         print("=" * 50)
         
-        # Run pytest on the tests directory with day-specific filter
+        # Get algorithm files in the day directory
+        algo_files = [f for f in day_dir.glob("*.py") if f.name != "__init__.py"]
+        if not algo_files:
+            print(f"❌ No algorithm files found in {day_dir}")
+            return 1
+        
+        # Run pytest on specific test files for this day's algorithms
+        test_files = []
+        for algo_file in algo_files:
+            algo_name = algo_file.stem  # filename without .py
+            test_file = self.tests_dir / f"test_{algo_name}.py"
+            if test_file.exists():
+                test_files.append(str(test_file))
+        
+        if not test_files:
+            print(f"⚠️  No test files found for day {day_num} algorithms")
+            print("   Your algorithm files exist but no corresponding tests were found")
+            print("   This means the algorithm isn't covered in our test examples yet")
+            return 0
+        
         pytest_args = [
-            "python", "-m", "pytest",
-            str(self.tests_dir),
+            "python", "-m", "pytest"
+        ] + test_files + [
             "-v" if verbose else "-q",
             "--tb=short",
-            f"--day={day_num}",  # Custom marker for day filtering
             "--color=yes"
         ]
         

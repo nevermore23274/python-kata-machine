@@ -20,15 +20,15 @@ def pytest_addoption(parser):
 
 def pytest_configure(config):
     """Configure pytest with custom markers"""
-    # Add the src directory to Python path for imports
-    src_dir = Path(__file__).parent.parent / "src"
-    if src_dir.exists():
-        # Find the latest day directory
-        day_dirs = [d for d in src_dir.iterdir() if d.is_dir() and d.name.startswith("day")]
-        if day_dirs:
-            latest_day = max(day_dirs, key=lambda x: int(x.name[3:]))
-            sys.path.insert(0, str(latest_day))
-            print(f"🔧 Added {latest_day} to Python path for testing")
+    # Add day directories to Python path for imports
+    base_dir = Path(__file__).parent.parent
+    
+    # Find day directories in base directory (not src/)
+    day_dirs = [d for d in base_dir.iterdir() if d.is_dir() and d.name.startswith("day")]
+    if day_dirs:
+        latest_day = max(day_dirs, key=lambda x: int(x.name[3:]))
+        sys.path.insert(0, str(latest_day))
+        print(f"🔧 Added {latest_day} to Python path for testing")
 
 
 def pytest_collection_modifyitems(config, items):
@@ -52,12 +52,9 @@ def pytest_collection_modifyitems(config, items):
 
 @pytest.fixture
 def current_day():
-    """Fixture to get the current day number from the latest src directory"""
-    src_dir = Path(__file__).parent.parent / "src"
-    if not src_dir.exists():
-        return 1
-    
-    day_dirs = [d for d in src_dir.iterdir() if d.is_dir() and d.name.startswith("day")]
+    """Fixture to get the current day number from the latest day directory"""
+    base_dir = Path(__file__).parent.parent
+    day_dirs = [d for d in base_dir.iterdir() if d.is_dir() and d.name.startswith("day")]
     if not day_dirs:
         return 1
     
@@ -71,9 +68,28 @@ def import_algorithm():
     def _import_algorithm(algorithm_name: str, day: int = None):
         """Import an algorithm function from the specified day"""
         if day is None:
-            # Auto-detect latest day
-            src_dir = Path(__file__).parent.parent / "src"
-            day_dirs = [d for d in src_dir.iterdir() if d.is_dir() and d.name.startswith("day")]
+            # Auto-detect latest day in base directory
+            base_dir = Path(__file__).parent.parent
+            day_dirs = [d for d in base_dir.iterdir() if d.is_dir() and d.name.startswith("day")]
+            if day_dirs:
+                latest_day = max(day_dirs, key=lambda x: int(x.name[3:]))
+                day = int(latest_day.name[3:])
+            else:
+                day = 1
+        
+        # Convert algorithm name to module and function name
+        module_name = _to_snake_case(algorithm_name)
+        function_name = module_name
+        
+        try:
+            # Import from the current day directory 
+            base_dir = Path(__file__).parent.parent
+            day_dir = base_dir / f"day{day}"
+            sys.path.insert(0, str(day_dir))
+            module = __import__(f"{module_name}", fromlist=[function_name])
+            return getattr(module, function_name)
+        except (ImportError, AttributeError) as e:
+            pytest.fail(f"Could not import {algorithm_name} from day{day}: {e}")d.name.startswith("day")]
             if day_dirs:
                 latest_day = max(day_dirs, key=lambda x: int(x.name[3:]))
                 day = int(latest_day.name[3:])

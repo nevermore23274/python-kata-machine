@@ -13,11 +13,7 @@ This project recreates the daily practice workflow from ThePrimeagen's "The Last
 
 ### Setup
 ```bash
-# Clone or create project directory
-mkdir python-kata-machine
-cd python-kata-machine
-
-# Start coding immediately
+git clone https://github.com/nevermore23274/python-kata-machine.git
 docker-compose run --rm python-kata
 ```
 

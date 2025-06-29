@@ -89,24 +89,7 @@ def import_algorithm():
             module = __import__(f"{module_name}", fromlist=[function_name])
             return getattr(module, function_name)
         except (ImportError, AttributeError) as e:
-            pytest.fail(f"Could not import {algorithm_name} from day{day}: {e}")d.name.startswith("day")]
-            if day_dirs:
-                latest_day = max(day_dirs, key=lambda x: int(x.name[3:]))
-                day = int(latest_day.name[3:])
-            else:
-                day = 1
-        
-        # Convert algorithm name to module and function name
-        module_name = _to_snake_case(algorithm_name)
-        function_name = module_name
-        
-        try:
-            # Import from the current day directory 
-            sys.path.insert(0, str(latest_day))
-            module = __import__(f"{module_name}", fromlist=[function_name])
-            return getattr(module, function_name)
-        except (ImportError, AttributeError) as e:
-            pytest.fail(f"Could not import {algorithm_name} from {latest_day.name}: {e}")
+            pytest.fail(f"Could not import {algorithm_name} from day{day}: {e}")
     
     return _import_algorithm
 

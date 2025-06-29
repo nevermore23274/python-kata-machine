@@ -28,6 +28,11 @@ ENV PYTHONUNBUFFERED=1
 
 # Create a non-root user for security
 RUN useradd -m -s /bin/bash kata-user
+
+# Create a custom bashrc that shows welcome message with helpful stuffs
+RUN echo 'python /kata-machine/scripts/welcome.py' >> /home/kata-user/.bashrc
+
+# Switch to safe user
 USER kata-user
 
 # Default command starts an interactive bash session

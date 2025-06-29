@@ -72,16 +72,16 @@ def main():
     
     # Map commands to scripts
     commands = {
-        "config": "check_config.py",
-        "daily": "scripts/daily.py",
+        "config": "/kata-machine/check_config.py",
+        "daily": "/kata-machine/scripts/daily.py",
         "test": "/kata-machine/test_runner.py",
-        "complete": ("scripts/daily.py", ["complete"]),
-        "progress": ("scripts/daily.py", ["progress"]),
-        "clear": "scripts/clear.py",
-        "reset": ("scripts/daily.py", ["reset"]),
+        "complete": ("/kata-machine/scripts/daily.py", ["complete"]),
+        "progress": ("/kata-machine/scripts/daily.py", ["progress"]),
+        "clear": "/kata-machine/scripts/clear.py",
+        "reset": ("/kata-machine/scripts/daily.py", ["reset"]),
         
         # Legacy commands for backwards compatibility
-        "generate": "scripts/daily.py",  # Redirect to daily
+        "generate": "/kata-machine/scripts/daily.py",  # Redirect to daily
     }
     
     if command in ["help", "-h", "--help"]:

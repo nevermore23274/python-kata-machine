@@ -13,9 +13,15 @@ from pathlib import Path
 class ConfigLoader:
     """Loads and validates kata configuration"""
     
-    def __init__(self, config_path: str = "kata.config.py"):
+    def __init__(self, config_path: str = None):
+        if config_path is None:
+            # Find kata-machine root directory (where kata.config.py exists)
+            kata_root = Path(__file__).parent
+            while kata_root != kata_root.parent and not (kata_root / "kata.config.py").exists():
+                kata_root = kata_root.parent
+            config_path = str(kata_root / "kata.config.py")
+
         self.config_path = Path(config_path)
-        self._config_module = None
         
     def load_config(self) -> Dict[str, Any]:
         """Load configuration from kata.config.py"""

@@ -208,7 +208,12 @@ Examples:
     print("🧪 Python Kata-Machine Test Runner")
     print("=" * 50)
     
-    runner = KataTestRunner()
+    # Find kata-machine root directory (where kata.py exists)
+    kata_root = Path(__file__).parent
+    while kata_root != kata_root.parent and not (kata_root / "kata.py").exists():
+        kata_root = kata_root.parent
+
+    runner = KataTestRunner(kata_root)
     verbose = not args.quiet
     
     if args.list:

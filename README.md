@@ -39,6 +39,26 @@ python kata.py clear              # ✅ Clean up practice files
 python kata.py reset              # ✅ Start course over
 ```
 
+## Quick Start, Simple and Fast
+
+```bash
+# 1. Clone and setup (one-time)
+git clone <your-repo-url>
+cd python-kata-machine
+docker-compose up -d --build
+
+# 2. Daily practice routine
+docker-compose exec python-kata bash    # Enter container
+python kata.py daily                    # Generate today's algorithm
+cd day1                                 # Navigate to practice folder
+vim linear_search.py                   # Edit the algorithm file
+# OR: code linear_search.py, nano linear_search.py, etc.
+
+# 3. Test and complete
+python kata.py test                     # Test your implementation
+python kata.py complete                 # Mark done, advance to next day
+```
+
 ## How It Works (Daily Practice System!)
 
 1. **Get Today's Algorithm:** Run `python kata.py daily` to get one algorithm ✅

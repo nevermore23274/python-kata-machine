@@ -110,11 +110,6 @@ $RECYCLE.BIN/
 # Linux
 *~
 
-# === DOCKER ===
-# Keep docker folder, but ignore old files if they exist
-Dockerfile
-requirements.txt
-
 # === OUTPUT & LOGS ===
 # Test output files
 output.txt

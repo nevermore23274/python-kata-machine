@@ -1,0 +1,21 @@
+# Python Kata-Machine Dependencies
+# Core development and testing tools
+
+# Testing framework
+pytest==8.4.1
+pytest-cov==5.0.0
+
+# Code formatting and linting
+black==24.8.0
+mypy==1.11.2
+
+# Type checking helpers
+types-setuptools==80.9.0.20250529
+
+# Development utilities (optional but useful)
+ipython==8.26.0
+
+# For any potential future data structure visualization
+# (commented out to keep minimal - uncomment if needed)
+# matplotlib==3.8.4
+# numpy==1.26.4

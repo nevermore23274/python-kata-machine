@@ -1,85 +1,61 @@
-# kata.config.py
 # Python equivalent of ligma.config.js
-# Configure which algorithms you want to practice
+# Daily algorithm progression following ThePrimeagen's course order
 
-# List of algorithms to generate for daily practice
-# Add or remove algorithms based on what you want to focus on
-DSA = [
-    # Search Algorithms
+# Course progression - algorithms in learning order
+# This follows the structure of "The Last Algorithms Course You'll Need"
+COURSE_PROGRESSION = [
+    # Week 1: Search & Basic Algorithms
     "LinearSearch",
     "BinarySearchList", 
     "TwoCrystalBalls",
     
-    # Sorting Algorithms
+    # Week 2: Sorting Fundamentals
     "BubbleSort",
     "InsertionSort",
-    "MergeSort",
-    "QuickSort",
     
-    # Data Structures
+    # Week 3: Data Structures Basics
     "Queue",
-    "Stack", 
+    "Stack",
     "ArrayList",
+    
+    # Week 4: Linked Lists
     "SinglyLinkedList",
     "DoublyLinkedList",
     
-    # Trees
+    # Week 5: Advanced Sorting
+    "MergeSort",
+    "QuickSort",
+    
+    # Week 6: Tree Traversals
     "BTPreOrder",
     "BTInOrder", 
     "BTPostOrder",
     "BTBFS",
+    
+    # Week 7: Tree Operations
     "CompareBinaryTrees",
     "DFSOnBST",
+    
+    # Week 8: Graph Algorithms
     "BFSGraphMatrix",
     "DFSGraphList",
+    
+    # Week 9: Advanced Graph Algorithms
     "Dijkstra",
     "PrimsList",
     
-    # Advanced
+    # Week 10: Advanced Data Structures
     "Trie",
     "LRU",
     "Map",
 ]
 
-# Alternative configurations for different focuses
-# Uncomment the one you want to use instead of DSA above
+# For backwards compatibility, keep DSA as an alias
+DSA = COURSE_PROGRESSION
 
-# BEGINNER_DSA = [
-#     "LinearSearch",
-#     "BinarySearchList",
-#     "BubbleSort", 
-#     "Queue",
-#     "Stack",
-#     "SinglyLinkedList",
-# ]
+# You can customize your starting point
+# Set to 0 to start from the beginning, or any index to skip ahead
+STARTING_ALGORITHM_INDEX = 0
 
-# INTERMEDIATE_DSA = [
-#     "BinarySearchList",
-#     "MergeSort",
-#     "QuickSort",
-#     "DoublyLinkedList",
-#     "BTPreOrder",
-#     "BTBFS",
-#     "BFSGraphMatrix",
-# ]
-
-# ADVANCED_DSA = [
-#     "QuickSort",
-#     "DFSOnBST", 
-#     "DFSGraphList",
-#     "Dijkstra",
-#     "PrimsList",
-#     "Trie",
-#     "LRU",
-# ]
-
-# INTERVIEW_PREP = [
-#     "TwoCrystalBalls",
-#     "QuickSort",
-#     "MergeSort", 
-#     "DoublyLinkedList",
-#     "BTBFS",
-#     "DFSOnBST",
-#     "Dijkstra",
-#     "LRU",
-# ]
+# Daily practice mode - only generate one algorithm per day
+DAILY_MODE = True

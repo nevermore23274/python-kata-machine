@@ -74,7 +74,7 @@ def main():
     commands = {
         "config": "check_config.py",
         "daily": "scripts/daily.py",
-        "test": "test_runner.py",
+        "test": "/kata-machine/test_runner.py",
         "complete": ("scripts/daily.py", ["complete"]),
         "progress": ("scripts/daily.py", ["progress"]),
         "clear": "scripts/clear.py",

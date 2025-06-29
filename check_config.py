@@ -46,7 +46,7 @@ def main():
             print()
         
         print("🎯 Configuration is valid and ready to use!")
-        print("   Next step: Run 'python scripts/generate.py' to create your first day of practice.")
+        print("   Next step: Run 'python kata.py daily' to start your daily practice.")
         
         return 0
         

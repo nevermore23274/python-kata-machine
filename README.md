@@ -39,7 +39,7 @@ python kata.py reset              # ✅ Start course over
 
 ```bash
 # 1. Clone and setup (one-time)
-git clone <your-repo-url>
+git clone https://github.com/nevermore23274/python-kata-machine.git
 cd python-kata-machine
 docker-compose up -d --build
 

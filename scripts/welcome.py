@@ -42,10 +42,10 @@ def show_welcome():
     
     print()
     print(f"{BOLD}Quick Start Commands:{END}")
-    print(f"  {GREEN}python kata.py daily{END}      # Get today's algorithm")
-    print(f"  {GREEN}python kata.py test{END}       # Test your implementation")
-    print(f"  {GREEN}python kata.py complete{END}   # Mark done, advance to next")
-    print(f"  {GREEN}python kata.py progress{END}   # See your progress")
+    print(f"  {GREEN}daily{END}               # Get today's algorithm")
+    print(f"  {GREEN}test{END}                # Test your implementation")
+    print(f"  {GREEN}complete{END}            # Mark done, advance to next")
+    print(f"  {GREEN}progress{END}            # See your progress")
     print()
     
     # Show current status
@@ -70,14 +70,14 @@ def show_welcome():
     
     print()
     print(f"{BOLD}Daily Workflow:{END}")
-    print(f"  1. {GREEN}python kata.py daily{END}    # Get algorithm")
-    print(f"  2. {GREEN}cd day1{END}                 # Go to practice folder")
-    print(f"  3. {GREEN}vim algorithm.py{END}        # Implement algorithm")
-    print(f"  4. {GREEN}python kata.py test{END}     # Test implementation")
-    print(f"  5. {GREEN}python kata.py complete{END} # Mark done!")
+    print(f"  1. {GREEN}daily{END}                # Get algorithm")
+    print(f"  2. {GREEN}cd day1{END}              # Go to practice folder")
+    print(f"  3. {GREEN}vim algorithm.py{END}     # Implement algorithm")
+    print(f"  4. {GREEN}test{END}                 # Test implementation")
+    print(f"  5. {GREEN}complete{END}             # Mark done!")
     print()
     print(f"{BLUE}Happy coding! 🎉{END}")
-    print(f"Type {GREEN}python kata.py{END} for help or {GREEN}python kata.py daily{END} to start")
+    print(f"Type {GREEN}kata{END} for help or {GREEN}daily{END} to start")
     print()
 
 if __name__ == "__main__":
